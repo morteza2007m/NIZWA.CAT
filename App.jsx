@@ -95,7 +95,6 @@ const translations = {
     close: 'إغلاق',
     remove: 'إزالة',
     imageMissing: 'الصورة غير متوفرة',
-
     forgotPassword: 'نسيت كلمة المرور؟',
     resetTitle: 'إعادة تعيين كلمة المرور',
     resetDescription: 'أدخل بريدك الإلكتروني لاستلام رابط إعادة تعيين كلمة المرور.',
@@ -192,7 +191,6 @@ const translations = {
     close: 'Close',
     remove: 'Remove',
     imageMissing: 'Image unavailable',
-
     forgotPassword: 'Forgot password?',
     resetTitle: 'Reset your password',
     resetDescription: 'Enter your email to receive a password reset link.',
@@ -264,7 +262,6 @@ export default function App() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  // Password recovery states
   const [forgotMode, setForgotMode] = useState(false)
   const [recoveryMode, setRecoveryMode] = useState(false)
   const [resetEmail, setResetEmail] = useState('')
@@ -357,8 +354,6 @@ export default function App() {
 
         setSession(nextSession)
 
-        // Supabase sends this event after the user opens
-        // the password recovery link from their email.
         if (event === 'PASSWORD_RECOVERY') {
           setRecoveryMode(true)
           setForgotMode(false)
@@ -581,13 +576,12 @@ export default function App() {
       setNotice(t.saved)
     } catch (error) {
       console.error('Login error:', error)
-      setNotice(t.loginError)
+      setNotice(error?.message || t.loginError)
     } finally {
       setSaving(false)
     }
   }
 
-  // Send password recovery email
   async function handleForgotPassword(event) {
     event.preventDefault()
 
@@ -616,13 +610,12 @@ export default function App() {
       setNotice(t.passwordSent)
     } catch (error) {
       console.error('Password recovery error:', error)
-      setNotice(t.passwordError)
+      setNotice(error?.message || t.passwordError)
     } finally {
       setSaving(false)
     }
   }
 
-  // Update password after opening the recovery link
   async function handleUpdatePassword(event) {
     event.preventDefault()
 
@@ -661,7 +654,7 @@ export default function App() {
       setNotice(t.passwordUpdated)
     } catch (error) {
       console.error('Password update error:', error)
-      setNotice(t.passwordError)
+      setNotice(error?.message || t.passwordError)
     } finally {
       setSaving(false)
     }
@@ -1609,7 +1602,8 @@ export default function App() {
               </IconButton>
             </div>
 
-            {!session ? (
+            {/* مهم: فرم بازیابی حتی با وجود Recovery Session نمایش داده می‌شود */}
+            {(!session || recoveryMode) ? (
               <div className="admin-login">
                 <div className="admin-login-icon">
                   <PawPrint size={34} />
@@ -1622,7 +1616,6 @@ export default function App() {
                   </div>
                 )}
 
-                {/* Password recovery: choose a new password */}
                 {recoveryMode ? (
                   <form onSubmit={handleUpdatePassword}>
                     <h3>{t.resetTitle}</h3>
@@ -1664,7 +1657,6 @@ export default function App() {
                     </button>
                   </form>
                 ) : forgotMode ? (
-                  /* Request password recovery email */
                   <form onSubmit={handleForgotPassword}>
                     <h3>{t.resetTitle}</h3>
                     <p>{t.resetDescription}</p>
@@ -1703,7 +1695,6 @@ export default function App() {
                     </button>
                   </form>
                 ) : (
-                  /* Normal admin login */
                   <form onSubmit={handleLogin}>
                     <h3>{t.login}</h3>
                     <p>{t.adminHint}</p>
