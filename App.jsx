@@ -150,7 +150,6 @@ function IconButton({ onClick, label, children, className = '' }) {
 export default function App() {
   const [lang, setLang] = useState('ar')
   const [introVisible, setIntroVisible] = useState(false)
-  })
   const [introLeaving, setIntroLeaving] = useState(false)
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
