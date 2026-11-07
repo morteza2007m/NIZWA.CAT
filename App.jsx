@@ -127,12 +127,6 @@ function productDescription(product, lang) {
     : (product.description_en || product.description_ar || '')
 }
 
-function categoryTitle(category, lang) {
-  return lang === 'ar'
-    ? (category.name_ar || category.name_en || '')
-    : (category.name_en || category.name_ar || '')
-}
-
 function IconButton({ onClick, label, children, className = '' }) {
   return (
     <button
@@ -145,7 +139,7 @@ function IconButton({ onClick, label, children, className = '' }) {
       {children}
     </button>
   )
-
+}
 
 export default function App() {
   const [lang, setLang] = useState('ar')
