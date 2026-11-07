@@ -660,7 +660,7 @@ export default function App() {
         }
         /* iPhone Chrome: keep the hero heading in normal document flow */
         @media(max-width:760px){
-          .app{overflow-x:hidden!important;overflow-y:visible!important}
+        .app{overflow-x:clip!important;overflow-y:visible!important}
           .hero{position:relative!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;max-height:none!important;overflow:visible!important;transform:none!important;contain:none!important}
           .hero-content{position:relative!important;inset:auto!important;display:flex!important;flex:0 0 auto!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;width:100%!important;height:auto!important;min-height:max-content!important;max-height:none!important;overflow:visible!important;clip-path:none!important;visibility:visible!important;opacity:1!important;transform:none!important}
           .hero-content .eyebrow,.hero-content h1,.hero-content p,.hero-content .primary-button{position:relative!important;inset:auto!important;display:block!important;flex:0 0 auto!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;clip-path:none!important;visibility:visible!important;opacity:1!important;transform:none!important}
