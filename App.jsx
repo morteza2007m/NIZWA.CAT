@@ -145,7 +145,7 @@ function IconButton({ onClick, label, children, className = '' }) {
       {children}
     </button>
   )
-}
+
 
 export default function App() {
   const [lang, setLang] = useState('ar')
