@@ -1174,10 +1174,131 @@ async function sendWhatsAppOrder() {
                 <div className="checkout-area">
                   <div className="cart-total"><strong>{t.total}</strong><strong>{money(cartTotal, lang)}</strong></div>
                   <form onSubmit={event => { event.preventDefault(); sendWhatsAppOrder() }} className="checkout-form">
-                    <input required placeholder={t.name} value={customer.name} onChange={event => setCustomer({ ...customer, name: event.target.value })} />
-                    <input required placeholder={t.phone} value={customer.phone} onChange={event => setCustomer({ ...customer, phone: event.target.value })} />
-                    <textarea required placeholder={t.address} value={customer.address} onChange={event => setCustomer({ ...customer, address: event.target.value })} rows="2" />
-                    <textarea placeholder={t.notes} value={customer.notes} onChange={event => setCustomer({ ...customer, notes: event.target.value })} rows="2" />
+                  
+<div className="checkout-field">
+  <label>{t.deliveryMethod}</label>
+
+  <div className="delivery-options">
+    <button
+      type="button"
+      className={`delivery-option ${customer.deliveryType === 'home' ? 'active' : ''}`}
+      onClick={() => setCustomer({ ...customer, deliveryType: 'home' })}
+    >
+      <span>{t.homeDelivery}</span>
+      <strong>{money(2, lang)}</strong>
+    </button>
+
+    <button
+      type="button"
+      className={`delivery-option ${customer.deliveryType === 'office' ? 'active' : ''}`}
+      onClick={() => setCustomer({ ...customer, deliveryType: 'office' })}
+    >
+      <span>{t.officeDelivery}</span>
+      <strong>{money(1, lang)}</strong>
+    </button>
+  </div>
+
+  <small className="delivery-weight-note">
+    {t.deliveryWeightNote}
+  </small>
+</div>
+
+<div className="checkout-field">
+  <label>{t.governorate}</label>
+  <select
+    required
+    value={customer.governorate}
+    onChange={event =>
+      setCustomer({
+        ...customer,
+        governorate: event.target.value,
+        wilayat: ''
+      })
+    }
+  >
+    <option value="">{t.selectGovernorate}</option>
+    {OMAN_GOVERNORATES.map(item => (
+      <option key={item.value} value={item.value}>
+        {item[lang]}
+      </option>
+    ))}
+  </select>
+</div>
+
+<div className="checkout-field">
+  <label>{t.wilayat}</label>
+  <select
+    required
+    disabled={!customer.governorate}
+    value={customer.wilayat}
+    onChange={event =>
+      setCustomer({ ...customer, wilayat: event.target.value })
+    }
+  >
+    <option value="">{t.selectWilayat}</option>
+    {availableWilayats.map(item => (
+      <option key={item.value} value={item.value}>
+        {item[lang]}
+      </option>
+    ))}
+  </select>
+</div>
+
+<input
+  required
+  placeholder={t.name}
+  value={customer.name}
+  onChange={event =>
+    setCustomer({ ...customer, name: event.target.value })
+  }
+/>
+
+<input
+  required
+  type="tel"
+  placeholder={t.phone}
+  value={customer.phone}
+  onChange={event =>
+    setCustomer({ ...customer, phone: event.target.value })
+  }
+/>
+
+<textarea
+  required
+  placeholder={t.address}
+  value={customer.address}
+  onChange={event =>
+    setCustomer({ ...customer, address: event.target.value })
+  }
+  rows="2"
+/>
+
+<textarea
+  placeholder={t.notes}
+  value={customer.notes}
+  onChange={event =>
+    setCustomer({ ...customer, notes: event.target.value })
+  }
+  rows="2"
+/>
+
+<div className="checkout-total-breakdown">
+  <div className="checkout-summary-row">
+    <span>{t.subtotal}</span>
+    <strong>{money(cartTotal, lang)}</strong>
+  </div>
+
+  <div className="checkout-summary-row">
+    <span>{t.deliveryFee}</span>
+    <strong>{money(deliveryFee, lang)}</strong>
+  </div>
+
+  <div className="checkout-summary-row checkout-grand-total">
+    <span>{t.finalTotal}</span>
+    <strong>{money(orderGrandTotal, lang)}</strong>
+  </div>
+</div>
+
                     <button type="submit" className="primary-button full-button" disabled={saving}><MessageCircle size={18} /> {saving ? <Loader2 className="spin" size={18} /> : t.checkout}</button>
                   </form>
                 </div>
