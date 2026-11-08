@@ -533,71 +533,122 @@ const availableWilayats = selectedGovernorate?.wilayats || []
     setCart(current => current.filter(item => item.id !== productId))
   }
 
-  async function sendWhatsAppOrder() {
-    if (!cart.length) {
-      setNotice(t.emptyCart)
-      return
-    }
-    if (!customer.name.trim() || !customer.phone.trim() || !customer.address.trim()) {
-      setNotice(t.required)
-      return
-    }
-    if (!supabase || !isSupabaseConfigured || saving) {
-      setNotice(t.setup)
-      return
-    }
-
-    setSaving(true)
-    try {
-      const rpcItems = cart.map(item => ({
-        product_id: item.id,
-        quantity: item.quantity
-      }))
-      const { data, error } = await supabase.rpc('create_store_order', {
-        p_customer_name: customer.name.trim(),
-        p_customer_phone: customer.phone.trim(),
-        p_customer_address: customer.address.trim(),
-        p_customer_notes: customer.notes.trim(),
-        p_language: lang,
-        p_items: rpcItems
-      })
-      if (error) throw error
-
-      const savedOrder = Array.isArray(data) ? data[0] : data
-      const orderId = savedOrder?.order_id
-      const savedTotal = savedOrder?.order_total
-      if (!orderId) throw new Error('Order was saved without a returned order ID.')
-
-      const lines = cart.map(item =>
-        `• ${productTitle(item, lang)} × ${item.quantity} — ${money(Number(item.price || 0) * item.quantity, lang)}`
-      )
-      const message = [
-        t.orderIntro,
-        `${t.orderNumber}: ${orderId}`,
-        '', ...lines, '',
-        `${t.orderTotal}: ${money(savedTotal, lang)}`, '',
-        `${t.orderName}: ${customer.name}`,
-        `${t.orderPhone}: ${customer.phone}`,
-        `${t.orderAddress}: ${customer.address}`,
-        customer.notes ? `${t.orderNotes}: ${customer.notes}` : ''
-      ].filter(Boolean).join('\n')
-      const url = `https://wa.me/${WA}?text=${encodeURIComponent(message)}`
-
-      setCart([])
-      setCustomer({ name: '', phone: '', address: '', notes: '' })
-      setCartOpen(false)
-      setNotice(t.orderSaved)
-      // Open WhatsApp in the same tab so the browser Back button returns to the store.
-      window.location.assign(url)
-    } catch (error) {
-      console.error('Create order error:', error)
-      setNotice(`${t.orderFailed} ${error?.message || ''}`)
-    } finally {
-      setSaving(false)
-    }
+  
+async function sendWhatsAppOrder() {
+  if (!cart.length) {
+    setNotice(t.emptyCart)
+    return
   }
 
-  async function loadOrders() {
+  if (
+    !customer.name.trim() ||
+    !customer.phone.trim() ||
+    !customer.address.trim() ||
+    !customer.governorate ||
+    !customer.wilayat
+  ) {
+    setNotice(t.required)
+    return
+  }
+
+  if (!supabase || !isSupabaseConfigured || saving) {
+    setNotice(t.setup)
+    return
+  }
+
+  setSaving(true)
+
+  try {
+    const rpcItems = cart.map(item => ({
+      product_id: item.id,
+      quantity: item.quantity
+    }))
+
+    const { data, error } = await supabase.rpc('create_store_order_v2', {
+      p_customer_name: customer.name.trim(),
+      p_customer_phone: customer.phone.trim(),
+      p_customer_address: customer.address.trim(),
+      p_customer_notes: customer.notes.trim(),
+      p_language: lang,
+      p_items: rpcItems,
+      p_delivery_type: customer.deliveryType,
+      p_governorate: customer.governorate,
+      p_wilayat: customer.wilayat
+    })
+
+    if (error) throw error
+
+    const savedOrder = Array.isArray(data) ? data[0] : data
+    const orderId = savedOrder?.order_id
+    const savedTotal = savedOrder?.order_total
+
+    if (!orderId) {
+      throw new Error('Order was saved without a returned order ID.')
+    }
+
+    const lines = cart.map(item =>
+      `• ${productTitle(item, lang)} × ${item.quantity} — ${money(Number(item.price || 0) * item.quantity, lang)}`
+    )
+
+    const deliveryName = customer.deliveryType === 'home'
+      ? t.homeDelivery
+      : t.officeDelivery
+
+    const governorateName =
+      OMAN_GOVERNORATES.find(item => item.value === customer.governorate)?.[lang]
+      || customer.governorate
+
+    const wilayatName =
+      OMAN_GOVERNORATES
+        .flatMap(item => item.wilayats)
+        .find(item => item.value === customer.wilayat)?.[lang]
+      || customer.wilayat
+
+    const message = [
+      t.orderIntro,
+      `${t.orderNumber}: ${orderId}`,
+      '',
+      ...lines,
+      '',
+      `${t.subtotal}: ${money(cartTotal, lang)}`,
+      `${t.deliveryMethod}: ${deliveryName}`,
+      `${t.deliveryFee}: ${money(deliveryFee, lang)}`,
+      `${t.orderTotal}: ${money(savedTotal, lang)}`,
+      '',
+      `${t.orderName}: ${customer.name}`,
+      `${t.orderPhone}: ${customer.phone}`,
+      `${t.governorate}: ${governorateName}`,
+      `${t.wilayat}: ${wilayatName}`,
+      `${t.orderAddress}: ${customer.address}`,
+      customer.notes ? `${t.orderNotes}: ${customer.notes}` : ''
+    ].filter(Boolean).join('\n')
+
+    const url = `https://wa.me/${WA}?text=${encodeURIComponent(message)}`
+
+    setCart([])
+    setCustomer({
+      name: '',
+      phone: '',
+      address: '',
+      notes: '',
+      governorate: '',
+      wilayat: '',
+      deliveryType: 'home'
+    })
+
+    setCartOpen(false)
+    setNotice(t.orderSaved)
+
+    window.location.assign(url)
+
+  } catch (error) {
+    console.error('Create order error:', error)
+    setNotice(`${t.orderFailed} ${error?.message || ''}`)
+  } finally {
+    setSaving(false)
+  }
+}
+
     if (!supabase || !session) return
     setOrdersLoading(true)
     setOrdersError('')
