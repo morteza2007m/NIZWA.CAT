@@ -1110,6 +1110,29 @@ async function loadOrders() {
 }
 
       `}</style>
+      {debugInfo && (
+  <div
+    style={{
+      position: 'fixed',
+      top: 8,
+      left: 8,
+      zIndex: 999999,
+      background: '#111',
+      color: '#00ff00',
+      padding: 10,
+      fontSize: 11,
+      direction: 'ltr',
+      maxWidth: '95vw',
+      pointerEvents: 'none',
+      whiteSpace: 'pre-wrap',
+      textAlign: 'left',
+    }}
+  >
+    {Object.entries(debugInfo)
+      .map(([key, value]) => `${key}: ${value}`)
+      .join('\n')}
+  </div>
+)}
       {introVisible && (
         <div className={`nizwa-intro ${introLeaving ? 'nizwa-intro-exit' : ''}`} role="status" aria-label="Welcome to NIZWA CAT">
           <div className="nizwa-intro-leaves" />
