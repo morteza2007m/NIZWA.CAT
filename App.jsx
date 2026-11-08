@@ -12,6 +12,148 @@ import { isSupabaseConfigured, supabase } from './supabase.js'
 const WA = (import.meta.env.VITE_WHATSAPP_NUMBER || '96871394358').replace(/\D/g, '')
 const NO_IMAGE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='700' viewBox='0 0 900 700'%3E%3Crect width='900' height='700' fill='%23f1eee5'/%3E%3Cg fill='none' stroke='%23b6b09f' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='300' y='190' width='300' height='270' rx='28'/%3E%3Cpath d='M360 390l75-80 55 55 45-48 55 73'/%3E%3Ccircle cx='390' cy='260' r='22'/%3E%3C/g%3E%3Ctext x='450' y='540' text-anchor='middle' font-family='Arial,sans-serif' font-size='30' fill='%23817b6d'%3ENo image available%3C/text%3E%3C/svg%3E"
 
+const OMAN_GOVERNORATES = [
+  {
+    value: 'Musandam',
+    ar: 'مسندم',
+    en: 'Musandam',
+    wilayats: [
+      { value: 'Khasab', ar: 'خصب', en: 'Khasab' },
+      { value: 'Bukha', ar: 'بخاء', en: 'Bukha' },
+      { value: 'Dibba', ar: 'دبا', en: 'Dibba' },
+      { value: 'Madha', ar: 'مدحاء', en: 'Madha' }
+    ]
+  },
+  {
+    value: 'Al Buraimi',
+    ar: 'البريمي',
+    en: 'Al Buraimi',
+    wilayats: [
+      { value: 'Al Buraimi', ar: 'البريمي', en: 'Al Buraimi' },
+      { value: 'Al Sunaynah', ar: 'السنينة', en: 'Al Sunaynah' },
+      { value: 'Mahdah', ar: 'محضة', en: 'Mahdah' }
+    ]
+  },
+  {
+    value: 'Al Batinah North',
+    ar: 'شمال الباطنة',
+    en: 'Al Batinah North',
+    wilayats: [
+      { value: 'Sohar', ar: 'صحار', en: 'Sohar' },
+      { value: 'Al Khabourah', ar: 'الخابورة', en: 'Al Khabourah' },
+      { value: 'Al Suwaiq', ar: 'السويق', en: 'Al Suwaiq' },
+      { value: 'Liwa', ar: 'لوى', en: 'Liwa' },
+      { value: 'Saham', ar: 'صحم', en: 'Saham' },
+      { value: 'Shinas', ar: 'شناص', en: 'Shinas' }
+    ]
+  },
+  {
+    value: 'Al Batinah South',
+    ar: 'جنوب الباطنة',
+    en: 'Al Batinah South',
+    wilayats: [
+      { value: 'Al Rustaq', ar: 'الرستاق', en: 'Al Rustaq' },
+      { value: 'Al Awabi', ar: 'العوابي', en: 'Al Awabi' },
+      { value: 'Al Musannah', ar: 'المصنعة', en: 'Al Musannah' },
+      { value: 'Barka', ar: 'بركاء', en: 'Barka' },
+      { value: 'Nakhal', ar: 'نخل', en: 'Nakhal' },
+      { value: 'Wadi Al Maawil', ar: 'وادي المعاول', en: 'Wadi Al Maawil' }
+    ]
+  },
+  {
+    value: 'Muscat',
+    ar: 'مسقط',
+    en: 'Muscat',
+    wilayats: [
+      { value: 'Muscat', ar: 'مسقط', en: 'Muscat' },
+      { value: 'Al Amirat', ar: 'العامرات', en: 'Al Amirat' },
+      { value: 'A Seeb', ar: 'السيب', en: 'A Seeb' },
+      { value: 'Boushar', ar: 'بوشر', en: 'Boushar' },
+      { value: 'Matrah', ar: 'مطرح', en: 'Matrah' },
+      { value: 'Qurayyat', ar: 'قريات', en: 'Qurayyat' }
+    ]
+  },
+  {
+    value: 'A Dhahirah',
+    ar: 'الظاهرة',
+    en: 'A Dhahirah',
+    wilayats: [
+      { value: 'Ibri', ar: 'عبري', en: 'Ibri' },
+      { value: 'Dhank', ar: 'ضنك', en: 'Dhank' },
+      { value: 'Yankul', ar: 'ينقل', en: 'Yankul' }
+    ]
+  },
+  {
+    value: 'A Dakhiliya',
+    ar: 'الداخلية',
+    en: 'A Dakhiliya',
+    wilayats: [
+      { value: 'Nizwa', ar: 'نزوى', en: 'Nizwa' },
+      { value: 'Adam', ar: 'أدم', en: 'Adam' },
+      { value: 'Al Hamra', ar: 'الحمراء', en: 'Al Hamra' },
+      { value: 'Bahla', ar: 'بهلاء', en: 'Bahla' },
+      { value: 'Bid Bid', ar: 'بدبد', en: 'Bid Bid' },
+      { value: 'Izki', ar: 'إزكي', en: 'Izki' },
+      { value: 'Manah', ar: 'منح', en: 'Manah' },
+      { value: 'Samail', ar: 'سمائل', en: 'Samail' }
+    ]
+  },
+  {
+    value: 'A Sharqiyah North',
+    ar: 'شمال الشرقية',
+    en: 'A Sharqiyah North',
+    wilayats: [
+      { value: 'Ibra', ar: 'إبراء', en: 'Ibra' },
+      { value: 'Bidiya', ar: 'بدية', en: 'Bidiya' },
+      { value: 'Al Kabil', ar: 'القابل', en: 'Al Kabil' },
+      { value: 'Al Mudhaibi', ar: 'المضيبي', en: 'Al Mudhaibi' },
+      { value: 'Dima W Attayeen', ar: 'دماء والطائيين', en: 'Dima W Attayeen' },
+      { value: 'Wadi Bani Khalid', ar: 'وادي بني خالد', en: 'Wadi Bani Khalid' }
+    ]
+  },
+  {
+    value: 'A Sharqiyah South',
+    ar: 'جنوب الشرقية',
+    en: 'A Sharqiyah South',
+    wilayats: [
+      { value: 'Sur', ar: 'صور', en: 'Sur' },
+      { value: 'Al Kamil W Al Wafi', ar: 'الكامل والوافي', en: 'Al Kamil W Al Wafi' },
+      { value: 'Jaalan Bani Bu Ali', ar: 'جعلان بني بو علي', en: 'Jaalan Bani Bu Ali' },
+      { value: 'Jaalan Bani Bu Hassan', ar: 'جعلان بني بو حسن', en: 'Jaalan Bani Bu Hassan' },
+      { value: 'Masirah', ar: 'مصيرة', en: 'Masirah' }
+    ]
+  },
+  {
+    value: 'Al Wusta',
+    ar: 'الوسطى',
+    en: 'Al Wusta',
+    wilayats: [
+      { value: 'Haima', ar: 'هيماء', en: 'Haima' },
+      { value: 'Al Jazer', ar: 'الجازر', en: 'Al Jazer' },
+      { value: 'Duqm', ar: 'الدقم', en: 'Duqm' },
+      { value: 'Mahout', ar: 'محوت', en: 'Mahout' }
+    ]
+  },
+  {
+    value: 'Dhofar',
+    ar: 'ظفار',
+    en: 'Dhofar',
+    wilayats: [
+      { value: 'Salalah', ar: 'صلالة', en: 'Salalah' },
+      { value: 'Al Mazyona', ar: 'المزيونة', en: 'Al Mazyona' },
+      { value: 'Dhalkut', ar: 'ضلكوت', en: 'Dhalkut' },
+      { value: 'Mirbat', ar: 'مرباط', en: 'Mirbat' },
+      { value: 'Muqshin', ar: 'مقشن', en: 'Muqshin' },
+      { value: 'Rakhyut', ar: 'رخيوت', en: 'Rakhyut' },
+      { value: 'Sadah', ar: 'سدح', en: 'Sadah' },
+      { value: 'Shalim and Hallaniyat Islands', ar: 'شليم وجزر الحلانيات', en: 'Shalim and Hallaniyat Islands' },
+      { value: 'Taqah', ar: 'طاقة', en: 'Taqah' },
+      { value: 'Thumrait', ar: 'ثمريت', en: 'Thumrait' }
+    ]
+  }
+]
+
+
 const translations = {
   ar: {
     announcement: 'توصيل لجميع ولايات سلطنة عُمان',
