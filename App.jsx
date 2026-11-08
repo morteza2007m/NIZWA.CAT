@@ -1403,16 +1403,54 @@ async function sendWhatsAppOrder() {
                             <strong>{t.orderNumber}: {order.id}</strong>
                             <small>{new Date(order.created_at).toLocaleString(lang === 'ar' ? 'ar-OM' : 'en-OM')}</small>
                             <strong>{order.customer_name}</strong>
-                            <small>{order.phone}</small>
-                            <small>{order.address}</small>
-                            {order.notes && <small>{t.notes}: {order.notes}</small>}
-                            <strong>{t.orderItems}</strong>
-                            {(Array.isArray(order.items) ? order.items : []).map((item, index) => (
-                              <small key={`${order.id}-${index}`}>
-                                {lang === 'ar' ? (item.name_ar || item.name_en) : (item.name_en || item.name_ar)} × {item.quantity} · {money(item.line_total, lang)}
-                              </small>
-                            ))}
-                            <strong>{t.total}: {money(order.total_amount, lang)}</strong>
+                         <small>{order.address}</small>
+
+<small>
+  {t.deliveryMethod}:{' '}
+  {order.delivery_type === 'office'
+    ? t.officeDelivery
+    : t.homeDelivery}
+</small>
+
+<small>
+  {t.governorate}:{' '}
+  {OMAN_GOVERNORATES.find(
+    item => item.value === order.governorate
+  )?.[lang] || order.governorate || '-'}
+</small>
+
+<small>
+  {t.wilayat}:{' '}
+  {OMAN_GOVERNORATES
+    .flatMap(item => item.wilayats)
+    .find(item => item.value === order.wilayat)?.[lang]
+    || order.wilayat
+    || '-'}
+</small>
+
+{order.notes && <small>{t.notes}: {order.notes}</small>}
+
+<strong>{t.orderItems}</strong>
+
+{(Array.isArray(order.items) ? order.items : []).map((item, index) => (
+  <small key={`${order.id}-${index}`}>
+    {lang === 'ar'
+      ? (item.name_ar || item.name_en)
+      : (item.name_en || item.name_ar)} × {item.quantity} · {money(item.line_total, lang)}
+  </small>
+))}
+
+<strong>
+  {t.subtotal}: {money(Number(order.total_amount) - Number(order.delivery_fee || 0), lang)}
+</strong>
+
+<strong>
+  {t.deliveryFee}: {money(order.delivery_fee, lang)}
+</strong>
+
+<strong>
+  {t.finalTotal}: {money(order.total_amount, lang)}
+</strong>
                           </div>
                           <label style={{ display: 'flex', flexDirection: 'column', gap: '6px', minWidth: '145px', fontSize: '13px' }}>
                             {t.orderStatus}
