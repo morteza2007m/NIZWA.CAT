@@ -1519,8 +1519,9 @@ async function loadOrders() {
                           <div className="admin-list-info" style={{ minWidth: '220px', flex: '1 1 260px', gap: '7px' }}>
                             <strong>{t.orderNumber}: {order.id}</strong>
                             <small>{new Date(order.created_at).toLocaleString(lang === 'ar' ? 'ar-OM' : 'en-OM')}</small>
-                            <strong>{order.customer_name}</strong>
-                         <small>{order.address}</small>
+                        <strong>{order.customer_name}</strong>
+<small>{order.phone}</small>
+<small>{order.address}</small>
 
 <small>
   {t.deliveryMethod}:{' '}
