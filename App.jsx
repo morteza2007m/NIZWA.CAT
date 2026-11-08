@@ -318,7 +318,7 @@ function IconButton({ onClick, label, children, className = '' }) {
 }
 
 export default function App() {
-  const [debugInfo, setDebugInfo] = useState(null)
+
 
 useEffect(() => {
   if (!new URLSearchParams(window.location.search).has('debug')) return
