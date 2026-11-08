@@ -2490,3 +2490,30 @@ body {
     transition: none !important;
   }
 }
+
+/* CART DRAWER - FIX CLOSE BUTTON ON MOBILE */
+
+.cart-drawer {
+  overflow: hidden !important;
+  min-height: 0;
+}
+
+.cart-drawer > .drawer-heading {
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 2;
+  background: var(--paper);
+}
+
+.cart-drawer > .cart-items {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.cart-drawer > .checkout-area {
+  flex: 0 0 auto;
+}
