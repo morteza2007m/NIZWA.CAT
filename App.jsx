@@ -648,7 +648,7 @@ async function sendWhatsAppOrder() {
     setSaving(false)
   }
 }
-
+async function loadOrders() {
     if (!supabase || !session) return
     setOrdersLoading(true)
     setOrdersError('')
