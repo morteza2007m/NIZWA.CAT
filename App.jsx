@@ -318,6 +318,49 @@ function IconButton({ onClick, label, children, className = '' }) {
 }
 
 export default function App() {
+  const [debugInfo, setDebugInfo] = useState(null)
+
+useEffect(() => {
+  if (!new URLSearchParams(window.location.search).has('debug')) return
+
+  const measure = () => {
+    const getTop = (selector) => {
+      const el = document.querySelector(selector)
+      return el
+        ? Math.round(el.getBoundingClientRect().top)
+        : 'not found'
+    }
+
+    setDebugInfo({
+      scrollY: Math.round(window.scrollY),
+      docScrollTop: Math.round(document.documentElement.scrollTop),
+      viewportOffsetTop: Math.round(window.visualViewport?.offsetTop ?? -1),
+      viewportPageTop: Math.round(window.visualViewport?.pageTop ?? -1),
+      viewportHeight: Math.round(window.visualViewport?.height ?? -1),
+      announcementTop: getTop('.announcement'),
+      headerTop: getTop('.site-header'),
+      heroTop: getTop('.hero'),
+      eyebrowTop: getTop('.hero-content .eyebrow'),
+    })
+  }
+
+  measure()
+
+  window.addEventListener('scroll', measure, { passive: true })
+  window.visualViewport?.addEventListener('scroll', measure)
+  window.visualViewport?.addEventListener('resize', measure)
+  window.addEventListener('resize', measure)
+
+  const interval = window.setInterval(measure, 500)
+
+  return () => {
+    window.removeEventListener('scroll', measure)
+    window.visualViewport?.removeEventListener('scroll', measure)
+    window.visualViewport?.removeEventListener('resize', measure)
+    window.removeEventListener('resize', measure)
+    window.clearInterval(interval)
+  }
+}, [])
   const [lang, setLang] = useState('ar')
   const [introVisible, setIntroVisible] = useState(() => {
   try {
