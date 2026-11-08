@@ -500,6 +500,16 @@ const [customer, setCustomer] = useState({
     (sum, item) => sum + Number(item.price || 0) * item.quantity, 0
   )
 
+const deliveryFee = customer.deliveryType === 'office' ? 1 : 2
+
+const orderGrandTotal = cartTotal + deliveryFee
+
+const selectedGovernorate = OMAN_GOVERNORATES.find(
+  item => item.value === customer.governorate
+)
+
+const availableWilayats = selectedGovernorate?.wilayats || []
+
   function addToCart(product) {
     setCart(current => {
       const found = current.find(item => item.id === product.id)
