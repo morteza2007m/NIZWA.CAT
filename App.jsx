@@ -340,7 +340,17 @@ export default function App() {
   const [imageFile, setImageFile] = useState(null)
   const [imagePreview, setImagePreview] = useState('')
   const [categoryForm, setCategoryForm] = useState({ name_en: '', name_ar: '' })
-  const [customer, setCustomer] = useState({ name: '', phone: '', address: '', notes: '' })
+  
+const [customer, setCustomer] = useState({
+  name: '',
+  phone: '',
+  address: '',
+  notes: '',
+  governorate: '',
+  wilayat: '',
+  deliveryType: 'home'
+})
+
   const [notice, setNotice] = useState('')
   const [loading, setLoading] = useState(Boolean(isSupabaseConfigured))
   const [saving, setSaving] = useState(false)
