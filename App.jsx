@@ -319,7 +319,13 @@ function IconButton({ onClick, label, children, className = '' }) {
 
 export default function App() {
   const [lang, setLang] = useState('ar')
-  const [introVisible, setIntroVisible] = useState(false)
+  const [introVisible, setIntroVisible] = useState(() => {
+  try {
+    return sessionStorage.getItem('nizwa-cat-intro-seen') !== '1'
+  } catch {
+    return true
+  }
+})
   const [introLeaving, setIntroLeaving] = useState(false)
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
