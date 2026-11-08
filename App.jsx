@@ -903,6 +903,117 @@ async function sendWhatsAppOrder() {
           .hero-image{flex:0 0 auto!important;position:relative!important;}
         }
         @media(prefers-reduced-motion:reduce){.nizwa-intro-cat,.nizwa-intro-brand,.nizwa-intro-ar,.nizwa-intro-tagline,.nizwa-intro-sub{animation:none!important}.hero-image img{transition:none}}
+        
+/* Checkout delivery and order summary */
+.checkout-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 12px 0;
+}
+
+.checkout-field > label {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.checkout-field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid var(--border, #ddd);
+  border-radius: 10px;
+  background: var(--surface, #fff);
+  color: inherit;
+  font: inherit;
+}
+
+.checkout-field select:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.delivery-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+.delivery-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 14px 8px;
+  border: 1px solid var(--border, #ddd);
+  border-radius: 12px;
+  background: var(--surface, #fff);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.delivery-option.active {
+  border-color: #71835d;
+  background: #f0f2e9;
+  color: #435437;
+  box-shadow: 0 0 0 1px #71835d;
+}
+
+.delivery-option span {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.delivery-option strong {
+  font-size: 14px;
+}
+
+.delivery-weight-note {
+  display: block;
+  color: var(--muted, #777);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.checkout-total-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--border, #ddd);
+}
+
+.checkout-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.checkout-grand-total {
+  padding-top: 12px;
+  border-top: 1px solid var(--border, #ddd);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+@media(max-width:480px) {
+  .delivery-options {
+    gap: 7px;
+  }
+
+  .delivery-option {
+    padding: 12px 5px;
+  }
+}
+
       `}</style>
       {introVisible && (
         <div className={`nizwa-intro ${introLeaving ? 'nizwa-intro-exit' : ''}`} role="status" aria-label="Welcome to NIZWA CAT">
