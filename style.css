@@ -2491,29 +2491,36 @@ body {
   }
 }
 
-/* CART DRAWER - FIX CLOSE BUTTON ON MOBILE */
+/* CART DRAWER - MOBILE SCROLL FIX */
 
 .cart-drawer {
+  display: flex !important;
+  flex-direction: column !important;
+  height: min(90dvh, 760px) !important;
+  max-height: calc(100dvh - 24px) !important;
   overflow: hidden !important;
-  min-height: 0;
+  min-height: 0 !important;
 }
 
 .cart-drawer > .drawer-heading {
-  flex: 0 0 auto;
+  flex: 0 0 auto !important;
   position: relative;
   z-index: 2;
   background: var(--paper);
 }
 
 .cart-drawer > .cart-items {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y;
 }
 
 .cart-drawer > .checkout-area {
-  flex: 0 0 auto;
+  flex: 0 1 auto !important;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
