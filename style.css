@@ -442,15 +442,16 @@ img {
   align-items: end;
   justify-content: space-between;
   gap: 20px;
-  margin-bottom: 26px;
+  margin-bottom: 28px;
 }
 
 .section-heading h2 {
   margin: 9px 0 0;
-  color: #4d583b;
+  color: #493A30;
   font-size: clamp(24px, 3vw, 34px);
   font-weight: 600;
   line-height: 1.4;
+  letter-spacing: -.02em;
 }
 
 .text-link {
@@ -460,12 +461,18 @@ img {
   gap: 7px;
   padding: 8px 0;
   border: 0;
-  border-bottom: 1px solid #d4ae4c;
+  border-bottom: 1px solid #B69A7D;
   background: transparent;
-  color: #66734d;
+  color: #75604F;
   font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
+  transition: all .25s ease;
+}
+
+.text-link:hover {
+  color: #493A30;
+  border-color: #493A30;
 }
 
 .category-grid {
@@ -480,18 +487,18 @@ img {
   align-items: center;
   gap: 13px;
   padding: 17px;
-  border: 1px solid var(--line);
-  border-radius: 15px;
-  background: var(--paper);
-  color: #596444;
+  border: 1px solid #E9DFD2;
+  border-radius: 16px;
+  background: #FFFCF7;
+  color: #493A30;
   text-align: start;
-  transition: transform .2s, border-color .2s, box-shadow .2s;
+  transition: all .3s ease;
 }
 
 .category-card:hover {
-  transform: translateY(-3px);
-  border-color: #d2c29b;
-  box-shadow: 0 12px 28px rgba(34,57,40,.08);
+  transform: translateY(-4px);
+  border-color: #B69A7D;
+  box-shadow: 0 14px 30px rgba(73,58,48,.08);
 }
 
 .category-icon {
@@ -501,19 +508,21 @@ img {
   display: grid;
   place-items: center;
   border-radius: 14px;
-  background: #f4edda;
-  color: #8c793e;
+  background: #F0E7DC;
+  color: #927B68;
 }
 
 .category-card strong {
   flex: 1;
+  color: #493A30;
   font-size: 13px;
+  font-weight: 600;
   line-height: 1.6;
 }
 
 .category-card > svg {
   flex: 0 0 auto;
-  color: #a98c55;
+  color: #927B68;
 }
 
 /* =========================
