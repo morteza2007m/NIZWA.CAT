@@ -2670,3 +2670,60 @@ body {
   color: var(--muted);
   font-size: 10px;
 }
+
+/* NIZWA CAT - Selected variant style */
+.variant-image-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.variant-image-choice {
+  position: relative;
+  border: 2px solid #e7e0d5;
+  border-radius: 14px;
+  background: #fff;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.variant-image-choice.active {
+  border: 2px solid #c93636 !important;
+  background: #fff5f4;
+  box-shadow: 0 0 0 3px rgba(201, 54, 54, 0.10);
+  transform: translateY(-2px);
+}
+
+.variant-image-choice.active::after {
+  content: "✓";
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 23px;
+  height: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #c93636;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.variant-image-choice img {
+  display: block;
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 9px;
+}
+
+.variant-image-choice-label {
+  display: block;
+  margin-top: 7px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+}
