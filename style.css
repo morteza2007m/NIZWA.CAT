@@ -2761,18 +2761,18 @@ body {
 
 .variant-image-choice {
   position: relative;
-  border: 2px solid #e7e0d5;
+  border: 1.5px solid #E9DFD2;
   border-radius: 14px;
-  background: #fff;
+  background: #FFFCF7;
   padding: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all .25s ease;
 }
 
 .variant-image-choice.active {
-  border: 2px solid #c93636 !important;
-  background: #fff5f4;
-  box-shadow: 0 0 0 3px rgba(201, 54, 54, 0.10);
+  border: 1.5px solid #927B68 !important;
+  background: #F7F3EC;
+  box-shadow: 0 0 0 3px rgba(146,123,104,.10);
   transform: translateY(-2px);
 }
 
@@ -2780,15 +2780,15 @@ body {
   content: "✓";
   position: absolute;
   top: 6px;
-  right: 6px;
+  inset-inline-end: 6px;
   width: 23px;
   height: 23px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: #c93636;
-  color: #fff;
+  background: #493A30;
+  color: #FFFCF7;
   font-size: 14px;
   font-weight: bold;
 }
