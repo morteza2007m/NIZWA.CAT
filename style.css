@@ -980,7 +980,9 @@ img {
 
 .product-modal-content {
   align-self: center;
-  padding: 35px;
+  min-width: 0;
+  padding: clamp(22px, 4vw, 35px);
+  color: #493A30;
 }
 
 .product-modal-content h2 {
