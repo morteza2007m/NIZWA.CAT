@@ -1067,17 +1067,23 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  padding-bottom: 17px;
-  border-bottom: 1px solid var(--line);
+  padding-bottom: 20px;
+  border-bottom: 1px solid #E9DFD2;
 }
 
 .drawer-heading h2 {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
   margin: 0;
-  color: #68734f;
-  font-size: 19px;
+  color: #493A30;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -.3px;
+}
+
+.drawer-heading h2 svg {
+  color: #927B68;
 }
 
 .cart-items {
