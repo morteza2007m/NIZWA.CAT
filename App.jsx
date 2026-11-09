@@ -1654,9 +1654,10 @@ async function loadOrders() {
           className="age-category-card"
           key={item.category.id}
           onClick={() => {
-            setActiveCategory(item.category.id)
-            setSearch('')
-            scrollToShop()
+            setAgePage(item.title === 'KITTEN' ? 'kitten' : 'adult')
+setActiveCategory(item.category.id)
+setSearch('')
+window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
         >
           <img
