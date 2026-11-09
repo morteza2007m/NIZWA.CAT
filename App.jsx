@@ -1836,7 +1836,7 @@ window.scrollTo({ top: 0, behavior: 'smooth' })
 
       <footer className="site-footer">
         <div className="footer-brand"><PawPrint size={25} /><strong>NIZWA CAT</strong><span>نزوى كت</span></div>
-        <p>{t.aboutText}</p>
+     <p>{t.footerText}</p>
         <div className="footer-links">
           <a href={`https://wa.me/${WA}`} target="_blank" rel="noreferrer"><MessageCircle size={19} /></a>
           <a href="https://instagram.com/" target="_blank" rel="noreferrer"><Instagram size={19} /></a>
