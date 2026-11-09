@@ -1622,7 +1622,62 @@ async function loadOrders() {
           <div className="benefit-item"><ShieldCheck size={25} /><div><strong>{t.quality}</strong><small>Selected with care</small></div></div>
           <div className="benefit-item"><Headphones size={25} /><div><strong>{t.support}</strong><small>Contact us anytime</small></div></div>
         </section>
+<section className="age-category-section">
+  <div className="section-heading">
+    <div>
+      <span className="eyebrow">SHOP BY AGE</span>
+      <h2>{lang === 'ar' ? 'اختر حسب عمر قطتك' : 'Shop by Age'}</h2>
+    </div>
+  </div>
 
+  <div className="age-category-grid">
+    {[
+      {
+        category: ageCategories.kitten,
+        title: 'KITTEN',
+        subtitle: lang === 'ar' ? 'للقطط الصغيرة' : 'For little kittens'
+      },
+      {
+        category: ageCategories.adult,
+        title: 'ADULT CATS',
+        subtitle: lang === 'ar' ? 'للقطط البالغة' : 'For grown-up cats'
+      }
+    ].filter(item => item.category).map(item => {
+      const categoryProduct = products.find(product =>
+        String(product.category_id || '') === String(item.category.id) &&
+        product.is_active !== false &&
+        product.image_url
+      )
+
+      return (
+        <button
+          type="button"
+          className="age-category-card"
+          key={item.category.id}
+          onClick={() => {
+            setActiveCategory(item.category.id)
+            setSearch('')
+            scrollToShop()
+          }}
+        >
+          <img
+            src={categoryProduct?.image_url || NO_IMAGE}
+            alt={item.title}
+            loading="lazy"
+          />
+          <span className="age-category-overlay">
+            <strong>{item.title}</strong>
+            <small>{item.subtitle}</small>
+            <span className="age-category-link">
+              {lang === 'ar' ? 'تسوق الآن' : 'SHOP NOW'}
+              <ArrowUpRight size={16} />
+            </span>
+          </span>
+        </button>
+      )
+    })}
+  </div>
+</section>
         <section className="category-section">
           <div className="section-heading">
             <div><span className="eyebrow">EXPLORE</span><h2>{t.categories}</h2></div>
