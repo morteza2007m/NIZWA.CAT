@@ -672,6 +672,27 @@ useEffect(() => {
     () => products.filter(product => product.is_active !== false && product.featured).slice(0, 8),
     [products]
   )
+    const ageCategories = useMemo(() => {
+    const isKitten = category =>
+      /kitten|kittens|القطط الصغيرة|قطط صغيرة/i.test(
+        `${category.name_en || ''} ${category.name_ar || ''}`
+      )
+
+    const isAdult = category =>
+      /adult cats|adult|القطط البالغة|قطط بالغة/i.test(
+        `${category.name_en || ''} ${category.name_ar || ''}`
+      )
+
+    return {
+      kitten: categories.find(isKitten),
+      adult: categories.find(isAdult)
+    }
+  }, [categories])
+
+  const otherCategories = categories.filter(category =>
+    String(category.id) !== String(ageCategories.kitten?.id || '') &&
+    String(category.id) !== String(ageCategories.adult?.id || '')
+  )
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0)
   const cartTotal = cart.reduce(
     (sum, item) => sum + Number(item.price || 0) * item.quantity, 0
