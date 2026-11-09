@@ -964,9 +964,10 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow: auto;
-  border-radius: 20px;
-  background: var(--paper);
-  box-shadow: var(--shadow);
+  border: 1px solid #E9DFD2;
+  border-radius: 18px;
+  background: #FFFCF7;
+  box-shadow: 0 24px 70px rgba(73,58,48,.16);
 }
 
 .product-modal > img {
