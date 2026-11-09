@@ -1629,7 +1629,7 @@ async function loadOrders() {
             <button type="button" className="text-link" onClick={scrollToShop}>{t.viewAll} <ArrowUpRight size={16} /></button>
           </div>
           <div className="category-grid">
-            {categories.map((category, index) => (
+          {otherCategories.map((category, index) => (
               <button type="button" className="category-card" key={category.id}
                 onClick={() => { setActiveCategory(category.id); scrollToShop() }}>
                 <span className={`category-icon category-icon-${index % 5}`}>
