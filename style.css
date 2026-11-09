@@ -1040,9 +1040,11 @@ img {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding: 22px;
-  background: var(--paper);
-  box-shadow: var(--shadow);
+  padding: clamp(18px, 4vw, 26px);
+  border-inline-start: 1px solid #E9DFD2;
+  background: #FFFCF7;
+  color: #493A30;
+  box-shadow: -18px 0 50px rgba(73,58,48,.10);
 }
 
 .cart-items {
