@@ -1763,7 +1763,18 @@ window.scrollTo({ top: 0, behavior: 'smooth' })
 
         <section className="shop-section" id="shop">
           <div className="section-heading">
-            <div><span className="eyebrow">THE COLLECTION</span><h2>{t.allProducts}</h2></div>
+         <div>
+  <span className="eyebrow">
+    {agePage ? 'NIZWA CAT COLLECTION' : 'THE COLLECTION'}
+  </span>
+  <h2>
+    {agePage === 'kitten'
+      ? (lang === 'ar' ? 'منتجات القطط الصغيرة' : 'Kitten Products')
+      : agePage === 'adult'
+        ? (lang === 'ar' ? 'منتجات القطط البالغة' : 'Adult Cat Products')
+        : t.allProducts}
+  </h2>
+</div>
             <div className="search-box">
               <Search size={18} />
               <input value={search} onChange={event => setSearch(event.target.value)}
