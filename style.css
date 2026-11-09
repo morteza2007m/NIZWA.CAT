@@ -13,14 +13,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 
-  --forest: #68734f;
-  --forest-dark: #29291f;
-  --gold: #d8aa2d;
-  --cream: #faf6eb;
-  --paper: #fffdf7;
-  --muted: #85816f;
-  --line: #e9e1cf;
-  --shadow: 0 18px 48px rgba(61,52,29,.11);
+  --forest: #927B68;
+  --forest-dark: #493A30;
+  --gold: #B69A7D;
+  --cream: #F7F3EC;
+  --paper: #FFFCF7;
+  --muted: #8C8176;
+  --line: #E9DFD2;
+  --shadow: 0 18px 48px rgba(73,58,48,.09);
 }
 
 * {
