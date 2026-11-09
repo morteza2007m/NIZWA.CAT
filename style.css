@@ -261,11 +261,11 @@ img {
   align-items: center;
   gap: 38px;
   overflow: hidden;
-  border: 1px solid rgba(190,155,67,.2);
-  border-radius: 28px;
-  background: linear-gradient(118deg, #fff9e9 0%, #f4e9c9 100%);
-  box-shadow: 0 18px 55px rgba(83,68,32,.08);
-  color: #373526;
+  border: 1px solid #E9DFD2;
+  border-radius: 24px;
+  background: linear-gradient(118deg, #FFFCF7 0%, #F0E7DC 100%);
+  box-shadow: 0 18px 55px rgba(73,58,48,.07);
+  color: #493A30;
 }
 
 .hero:before {
@@ -275,11 +275,11 @@ img {
   height: 430px;
   inset-inline-start: -190px;
   bottom: -250px;
-  border: 1px solid rgba(232,215,177,.2);
+  border: 1px solid rgba(146,123,104,.13);
   border-radius: 50%;
   box-shadow:
-    0 0 0 45px rgba(232,215,177,.035),
-    0 0 0 90px rgba(232,215,177,.025);
+    0 0 0 45px rgba(146,123,104,.035),
+    0 0 0 90px rgba(146,123,104,.025);
   pointer-events: none;
 }
 
@@ -293,19 +293,19 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #8c742e;
+  color: #927B68;
   font: 700 10px 'DM Sans', sans-serif;
   letter-spacing: .13em;
   text-transform: uppercase;
 }
 
 .hero .eyebrow {
-  color: #8c742e;
+  color: #927B68;
 }
 
 .hero h1 {
   margin: 18px 0 15px;
-  color: #373526;
+  color: #493A30;
   font-size: clamp(32px, 4.3vw, 55px);
   font-weight: 600;
   line-height: 1.4;
@@ -315,7 +315,7 @@ img {
 .hero-content p {
   max-width: 490px;
   margin: 0;
-  color: #68634d;
+  color: #75685D;
   font-size: 14px;
   line-height: 2.1;
 }
