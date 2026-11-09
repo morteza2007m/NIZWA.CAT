@@ -1792,6 +1792,7 @@ window.scrollTo({ top: 0, behavior: 'smooth' })
                 onClick={() => setActiveCategory(category.id)}>{categoryTitle(category, lang)}</button>
             ))}
           </div>
+                    )}
           {loading && <div className="loading-state"><Loader2 className="spin" /> {t.loading}</div>}
           {storeError && <div className="notice error"><AlertCircle size={17} /> {storeError}</div>}
           {!loading && filteredProducts.length > 0 && (
