@@ -1722,7 +1722,8 @@ window.scrollTo({ top: 0, behavior: 'smooth' })
     })}
   </div>
 </section>
-        <section className="category-section">
+      {!agePage && (
+<section className="category-section">
           <div className="section-heading">
             <div><span className="eyebrow">EXPLORE</span><h2>{t.categories}</h2></div>
             <button type="button" className="text-link" onClick={scrollToShop}>{t.viewAll} <ArrowUpRight size={16} /></button>
