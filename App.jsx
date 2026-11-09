@@ -1694,7 +1694,7 @@ const categoryImage =
           }}
         >
           <img
-            src={categoryProduct?.image_url || NO_IMAGE}
+            src={categoryImage}
             alt={item.title}
             loading="lazy"
           />
