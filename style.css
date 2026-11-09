@@ -1137,28 +1137,36 @@ img {
 .quantity-control {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 3px;
-  padding: 3px 7px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  gap: 13px;
+  margin-top: 5px;
+  padding: 4px 8px;
+  border: 1px solid #E9DFD2;
+  border-radius: 30px;
+  background: #F7F3EC;
 }
 
 .quantity-control button {
-  width: 24px;
-  height: 24px;
+  width: 25px;
+  height: 25px;
   display: grid;
   place-items: center;
   border: 0;
   border-radius: 50%;
-  background: #f1f2eb;
-  color: #68734f;
+  background: #493A30;
+  color: #FFFCF7;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.quantity-control button:hover {
+  background: #927B68;
+  transform: scale(1.08);
 }
 
 .quantity-control span {
-  min-width: 12px;
-  color: #68734f;
-  font: 12px 'DM Sans';
+  min-width: 14px;
+  color: #493A30;
+  font: 600 12px 'DM Sans', sans-serif;
   text-align: center;
 }
 
