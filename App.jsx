@@ -1809,7 +1809,7 @@ window.scrollTo({ top: 0, behavior: 'smooth' })
             <div className="empty-state"><Package size={38} /><p>{search ? t.noResults : t.noProducts}</p></div>
           )}
         </section>
-
+{!agePage && (
         <section className="about-section" id="about">
           <div className="about-icon"><PawPrint size={42} /></div>
           <div>
@@ -1819,6 +1819,7 @@ window.scrollTo({ top: 0, behavior: 'smooth' })
             </a>
           </div>
         </section>
+  )}
       </main>
 
       <footer className="site-footer">
