@@ -94,16 +94,17 @@ img {
 ========================= */
 
 .announcement {
-  min-height: 34px;
+  min-height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 7px 14px;
-  background: #343326;
-  color: #f8edcf;
+  padding: 8px 14px;
+  background: #493A30;
+  color: #F7F3EC;
   text-align: center;
   font-size: 11px;
+  letter-spacing: .03em;
 }
 
 .site-header {
