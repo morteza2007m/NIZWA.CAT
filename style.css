@@ -998,12 +998,28 @@ img {
 .cart-drawer {
   width: min(470px, 100%);
   height: 100%;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow: hidden;
   padding: 22px;
   background: var(--paper);
   box-shadow: var(--shadow);
+}
+
+.cart-items {
+  flex: 1 1 auto;
+  min-height: 100px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 10px 0;
+}
+
+.checkout-area {
+  flex: 0 0 auto;
+  max-height: 55%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .drawer-heading {
