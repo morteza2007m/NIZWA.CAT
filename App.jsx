@@ -1663,7 +1663,7 @@ async function loadOrders() {
           <div className="benefit-item"><Truck size={25} /><div><strong>{t.delivery}</strong><small>Oman-wide service</small></div></div>
           <div className="benefit-item"><ShieldCheck size={25} /><div><strong>{t.quality}</strong><small>Selected with care</small></div></div>
           <div className="benefit-item"><Headphones size={25} /><div><strong>{t.support}</strong><small>Contact us anytime</small></div></div>
-        </section>
+     
         </section>
         )}
         {!agePage && (
