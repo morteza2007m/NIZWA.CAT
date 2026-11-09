@@ -1643,45 +1643,10 @@ async function loadOrders() {
         subtitle: lang === 'ar' ? 'للقطط البالغة' : 'For grown-up cats'
       }
     ].filter(item => item.category).map(item => {
-      const categoryProduct = products.find(product =>
-  String(product.category_id || '') === String(item.category.id) &&
-  product.is_active !== false &&
-  productMedia.some(media =>
-    String(media.product_id) === String(product.id) &&
-    media.media_type === 'image' &&
-    media.is_primary
-  )
-) || products.find(product =>
-  String(product.category_id || '') === String(item.category.id) &&
-  product.is_active !== false &&
-  productMedia.some(media =>
-    String(media.product_id) === String(product.id) &&
-    media.media_type === 'image'
-  )
-) || products.find(product =>
-  String(product.category_id || '') === String(item.category.id) &&
-  product.is_active !== false &&
-  product.image_url
-)
-
-const categoryProductImages = categoryProduct
-  ? productMedia
-      .filter(media =>
-        String(media.product_id) === String(categoryProduct.id) &&
-        media.media_type === 'image'
-      )
-      .sort((a, b) =>
-        Number(b.is_primary) - Number(a.is_primary) ||
-        Number(a.display_order || 0) - Number(b.display_order || 0)
-      )
-  : []
-
-const categoryImage =
-  categoryProductImages[0]?.thumbnail_url ||
-  categoryProductImages[0]?.media_url ||
-  categoryProduct?.image_url ||
-  NO_IMAGE
-
+      const categoryImage =
+  item.title === 'KITTEN'
+    ? 'https://kdvhkhrabefijguvkbew.supabase.co/storage/v1/object/public/category-images/kitten.jpg.JPG'
+    : 'https://kdvhkhrabefijguvkbew.supabase.co/storage/v1/object/public/category-images/adult-cats.jpg.JPG'
       return (
         <button
           type="button"
