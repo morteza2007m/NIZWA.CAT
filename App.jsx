@@ -232,6 +232,8 @@ orderDeliveryType: 'طريقة التوصيل',
     notes: 'Additional notes', sendOrder: 'Send order', quantity: 'Quantity',
     delivery: 'Delivery across Oman', quality: 'Carefully selected products',
     support: 'We are here to help',
+    heroTitle: 'Little details for your cat’s comfort and happiness',
+heroText: 'From everyday essentials to special little finds, choose everything your cat loves and needs.',
     aboutTitle: 'Because your cat deserves to be spoiled',
 
     aboutText: 'At NIZWA CAT, we know your cat is more than just a pet — they are part of your family and deserve all the love and care. That is why we bring together products that combine quality, comfort, and style, hoping to be part of your beautiful moments with your cats.',
