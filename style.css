@@ -983,9 +983,10 @@ img {
 }
 
 .product-modal-content h2 {
-  margin: 0 0 12px;
-  color: #68734f;
-  font-size: 24px;
+  margin: 0 0 14px;
+  color: #493A30;
+  font-size: 25px;
+  font-weight: 600;
   line-height: 1.5;
 }
 
