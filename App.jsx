@@ -1619,6 +1619,46 @@ async function loadOrders() {
           </div>
         </section>
 
+            </section>
+) : (
+  <section className="hero age-page-hero">
+    <div className="hero-content">
+      <span className="eyebrow"><PawPrint size={16} /> NIZWA CAT</span>
+      <h1>
+        {agePage === 'kitten'
+          ? (lang === 'ar' ? 'عالم القطط الصغيرة' : 'Kitten Collection')
+          : (lang === 'ar' ? 'عالم القطط البالغة' : 'Adult Cats Collection')}
+      </h1>
+      <p>
+        {agePage === 'kitten'
+          ? (lang === 'ar' ? 'كل ما تحتاجه قطتك الصغيرة لنمو سعيد وصحي.' : 'Everything your little kitten needs to grow happy and healthy.')
+          : (lang === 'ar' ? 'منتجات مختارة لراحة وسعادة قطتك البالغة.' : 'Carefully selected essentials for your adult cat.')}
+      </p>
+      <button
+        type="button"
+        className="primary-button"
+        onClick={() => {
+          setAgePage(null)
+          setActiveCategory('all')
+          setSearch('')
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }}
+      >
+        {lang === 'ar' ? 'العودة إلى المتجر' : 'Back to Home'}
+      </button>
+    </div>
+    <div className="hero-image">
+      <img
+        src={agePage === 'kitten'
+          ? 'https://kdvhkhrabefijguvkbew.supabase.co/storage/v1/object/public/category-images/kitten.jpg.JPG'
+          : 'https://kdvhkhrabefijguvkbew.supabase.co/storage/v1/object/public/category-images/adult-cats.jpg.JPG'}
+        alt={agePage === 'kitten' ? 'Kitten' : 'Adult cat'}
+      />
+    </div>
+  </section>
+)}
+
+        {!agePage && (
         <section className="benefits">
           <div className="benefit-item"><Truck size={25} /><div><strong>{t.delivery}</strong><small>Oman-wide service</small></div></div>
           <div className="benefit-item"><ShieldCheck size={25} /><div><strong>{t.quality}</strong><small>Selected with care</small></div></div>
