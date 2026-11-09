@@ -998,8 +998,10 @@ img {
 
 .product-modal-content .product-price {
   display: block;
-  margin: 22px 0;
-  font-size: 19px;
+  margin: 24px 0;
+  color: #493A30;
+  font-size: 21px;
+  font-weight: 700;
 }
 
 .icon-button {
