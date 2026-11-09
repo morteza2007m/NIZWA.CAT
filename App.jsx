@@ -1757,6 +1757,8 @@ window.scrollTo({ top: 0, behavior: 'smooth' })
             </div>
           </section>
         )}
+                )}
+   
 
         <section className="shop-section" id="shop">
           <div className="section-heading">
