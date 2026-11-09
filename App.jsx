@@ -1782,7 +1782,8 @@ window.scrollTo({ top: 0, behavior: 'smooth' })
               {search && <button type="button" onClick={() => setSearch('')} aria-label={t.close}><X size={16} /></button>}
             </div>
           </div>
-          <div className="filter-row">
+       {!agePage && (
+  <div className="filter-row">
             <button type="button" className={activeCategory === 'all' ? 'filter-chip active' : 'filter-chip'}
               onClick={() => setActiveCategory('all')}>{t.categoryAll}</button>
             {categories.map(category => (
