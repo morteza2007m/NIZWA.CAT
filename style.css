@@ -650,28 +650,38 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 7px 10px;
-  border-radius: 999px;
-  background: rgba(255,254,250,.94);
-  color: #68734f;
+  padding: 7px 11px;
+  border: 1px solid rgba(233,223,210,.8);
+  border-radius: 30px;
+  background: rgba(255,252,247,.96);
+  color: #75604F;
   font-size: 10px;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
 }
 
 .product-view {
   position: absolute;
   inset-inline-end: 11px;
   bottom: 11px;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   display: grid;
   place-items: center;
+  border: 1px solid #E9DFD2;
   border-radius: 50%;
-  background: rgba(255,254,250,.95);
-  color: #68734f;
+  background: rgba(255,252,247,.96);
+  color: #493A30;
+  transition: all .25s ease;
+}
+
+.product-view:hover {
+  background: #493A30;
+  color: #FFFCF7;
 }
 
 .product-card-content {
-  padding: 15px;
+  padding: 16px;
 }
 
 .product-name {
@@ -680,18 +690,23 @@ img {
   padding: 0;
   border: 0;
   background: transparent;
-  color: #4d583b;
+  color: #493A30;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.7;
   text-align: start;
+  transition: color .2s ease;
+}
+
+.product-name:hover {
+  color: #927B68;
 }
 
 .product-card-content p {
   min-height: 39px;
   margin: 6px 0 12px;
   overflow: hidden;
-  color: var(--muted);
+  color: #8C8176;
   font-size: 11px;
   line-height: 1.8;
   display: -webkit-box;
@@ -704,12 +719,12 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding-top: 11px;
-  border-top: 1px solid #eff0e9;
+  padding-top: 12px;
+  border-top: 1px solid #E9DFD2;
 }
 
 .product-price {
-  color: #4d583b;
+  color: #493A30;
   font: 700 14px 'DM Sans', sans-serif;
 }
 
@@ -720,9 +735,15 @@ img {
   place-items: center;
   flex: 0 0 auto;
   border: 0;
-  border-radius: 11px;
-  background: #68734f;
-  color: white;
+  border-radius: 10px;
+  background: #493A30;
+  color: #FFFCF7;
+  transition: all .25s ease;
+}
+
+.add-cart-button:hover {
+  background: #927B68;
+  transform: translateY(-2px);
 }
 
 .loading-state,
