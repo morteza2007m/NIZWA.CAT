@@ -1722,7 +1722,7 @@ window.scrollTo({ top: 0, behavior: 'smooth' })
     })}
   </div>
 </section>
-      {!agePage && (
+    
 <section className="category-section">
           <div className="section-heading">
             <div><span className="eyebrow">EXPLORE</span><h2>{t.categories}</h2></div>
