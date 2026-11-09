@@ -1010,10 +1010,17 @@ img {
   display: grid;
   place-items: center;
   flex: 0 0 auto;
-  border: 1px solid var(--line);
+  border: 1px solid #E9DFD2;
   border-radius: 50%;
-  background: white;
-  color: #68734f;
+  background: #FFFCF7;
+  color: #493A30;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.icon-button:hover {
+  background: #F7F3EC;
+  border-color: #927B68;
 }
 
 .modal-close {
