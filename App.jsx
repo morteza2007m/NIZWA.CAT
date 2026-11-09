@@ -1616,7 +1616,8 @@ async function loadOrders() {
   <section className="hero">
           <div className="hero-content">
             <span className="eyebrow"><PawPrint size={16} /> NIZWA CAT</span>
-            <h1>{t.aboutTitle}</h1><p>{t.aboutText}</p>
+         <h1>{t.heroTitle}</h1>
+<p>{t.heroText}</p>
             <button type="button" className="primary-button" onClick={scrollToShop}>
               {t.shop} <ArrowUpRight size={18} />
             </button>
