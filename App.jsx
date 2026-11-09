@@ -387,6 +387,7 @@ useEffect(() => {
   const [mediaUploading, setMediaUploading] = useState(false)
   const [selectedVariantValues, setSelectedVariantValues] = useState({})
   const [activeCategory, setActiveCategory] = useState('all')
+  const [agePage, setAgePage] = useState(null)
   const [search, setSearch] = useState('')
   const [cart, setCart] = useState([])
   const [cartOpen, setCartOpen] = useState(false)
