@@ -1022,6 +1022,9 @@ img {
 
 .full-button {
   width: 100%;
+  min-height: 50px;
+  border-radius: 9px;
+  letter-spacing: .4px;
 }
 
 /* =========================
