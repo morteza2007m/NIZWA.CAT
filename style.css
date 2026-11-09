@@ -321,24 +321,27 @@ img {
 }
 
 .primary-button {
-  min-height: 46px;
+  min-height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
-  padding: 12px 21px;
-  border: 1px solid #d5a62a;
-  border-radius: 8px;
-  background: #d5a62a;
-  color: #302a19;
+  padding: 13px 25px;
+  border: 1px solid #493A30;
+  border-radius: 6px;
+  background: #493A30;
+  color: #FFFCF7;
   font-size: 13px;
-  font-weight: 700;
-  transition: transform .2s, background .2s;
+  font-weight: 600;
+  letter-spacing: .3px;
+  transition: all .3s ease;
 }
 
 .primary-button:hover {
   transform: translateY(-2px);
-  background: #e4bd53;
+  background: #927B68;
+  border-color: #927B68;
+  box-shadow: 0 8px 22px rgba(73,58,48,.16);
 }
 
 .hero .primary-button {
@@ -351,18 +354,10 @@ img {
   height: 100%;
   max-height: 430px;
   overflow: hidden;
-  border: 5px solid rgba(255,255,255,.72);
-  border-radius: 28px 72px 28px 28px;
-  background: #e9bb39;
-  box-shadow: 0 22px 55px rgba(87,64,15,.16);
-}
-
-.hero-image img {
-  width: 100%;
-  height: 100%;
-  min-height: clamp(270px, 34vw, 430px);
-  object-fit: cover;
-  object-position: center 48%;
+  border: 5px solid rgba(255,252,247,.85);
+  border-radius: 24px 56px 24px 24px;
+  background: #E9DFD2;
+  box-shadow: 0 22px 55px rgba(73,58,48,.12);
 }
 
 .hero-sticker {
