@@ -1604,7 +1604,8 @@ async function loadOrders() {
       </header>
 
       <main>
-        <section className="hero">
+     {!agePage ? (
+  <section className="hero">
           <div className="hero-content">
             <span className="eyebrow"><PawPrint size={16} /> NIZWA CAT</span>
             <h1>{t.aboutTitle}</h1><p>{t.aboutText}</p>
