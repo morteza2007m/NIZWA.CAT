@@ -1664,7 +1664,10 @@ async function loadOrders() {
           <div className="benefit-item"><ShieldCheck size={25} /><div><strong>{t.quality}</strong><small>Selected with care</small></div></div>
           <div className="benefit-item"><Headphones size={25} /><div><strong>{t.support}</strong><small>Contact us anytime</small></div></div>
         </section>
-<section className="age-category-section">
+        </section>
+        )}
+        {!agePage && (
+        <section className="age-category-section">
   <div className="section-heading">
     <div>
       <span className="eyebrow">SHOP BY AGE</span>
