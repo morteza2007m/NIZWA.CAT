@@ -2795,10 +2795,11 @@ body {
 
 .variant-image-choice img {
   display: block;
-  width: 75px;
-  height: 75px;
-  object-fit: cover;
-  border-radius: 9px;
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #F3EDE3;
 }
 
 .variant-image-choice-label {
