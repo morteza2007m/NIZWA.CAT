@@ -1619,7 +1619,7 @@ async function loadOrders() {
           </div>
         </section>
 
-            </section>
+          
 ) : (
   <section className="hero age-page-hero">
     <div className="hero-content">
