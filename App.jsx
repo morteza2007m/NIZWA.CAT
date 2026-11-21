@@ -2551,7 +2551,7 @@ async function loadOrders() {
           <div className="nizwa-intro-leaves" />
           <img
             className="nizwa-intro-cat"
-            src="/images/welcome-nizwa-cat.jpeg"
+            src="/images/public/images/welcome-nizwa-cat.jpeg.PNG"
             alt="NIZWA CAT — قطك يستاهل الأفضل"
             fetchPriority="high"
           />
