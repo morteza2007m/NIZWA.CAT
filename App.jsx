@@ -1320,7 +1320,85 @@ async function loadOrders() {
     }
     setOrdersLoading(false)
   }
+const loadReviews = async () => {
+  setReviewsLoading(true)
+  setReviewsError('')
 
+  const { data, error } = await supabase
+    .from('reviews')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    setReviewsError(error.message)
+    setReviews([])
+  } else {
+    setReviews(data || [])
+  }
+
+  setReviewsLoading(false)
+}
+
+const submitReview = async (productId = null) => {
+  if (!reviewName.trim() || !reviewComment.trim()) return
+
+  setReviewSubmitting(true)
+
+  const { error } = await supabase.from('reviews').insert({
+    product_id: productId,
+    customer_name: reviewName.trim(),
+    rating: reviewRating,
+    comment: reviewComment.trim(),
+    status: 'pending'
+  })
+
+  setReviewSubmitting(false)
+
+  if (error) {
+    alert(lang === 'ar' ? 'تعذر إرسال التقييم' : 'Could not submit your review')
+    return
+  }
+
+  setReviewName('')
+  setReviewComment('')
+  setReviewRating(5)
+
+  alert(
+    lang === 'ar'
+      ? 'شكراً لك! تم إرسال تقييمك وبانتظار الموافقة'
+      : 'Thank you! Your review was submitted and is awaiting approval.'
+  )
+}
+
+const updateReviewStatus = async (id, status) => {
+  const { error } = await supabase
+    .from('reviews')
+    .update({ status })
+    .eq('id', id)
+
+  if (error) {
+    alert(error.message)
+    return
+  }
+
+  await loadReviews()
+}
+
+const deleteReview = async (id) => {
+  if (!window.confirm(lang === 'ar' ? 'هل تريد حذف التقييم؟' : 'Delete this review?')) return
+
+  const { error } = await supabase
+    .from('reviews')
+    .delete()
+    .eq('id', id)
+
+  if (error) {
+    alert(error.message)
+    return
+  }
+
+  await loadReviews()
+}
   async function lookupCustomerOrders(event, view = activeView) {
     event?.preventDefault?.()
     const phone = lookupPhone.trim()
