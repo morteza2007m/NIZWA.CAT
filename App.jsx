@@ -1970,7 +1970,9 @@ async function addCategory(event) {
         category_id: subcategoryForm.category_id,
         name_en: subcategoryForm.name_en.trim(),
         name_ar: subcategoryForm.name_ar.trim(),
-        display_order: subcategories.filter(item => String(item.category_id) === String(subcategoryForm.category_id)).length
+        display_order: subcategories
+  .filter(item => String(item.category_id) === String(subcategoryForm.category_id))
+  .reduce((max, item) => Math.max(max, Number(item.display_order ?? -1)), -1) + 1
       })
       if (error) throw error
       setSubcategoryForm({ category_id: '', name_en: '', name_ar: '' })
