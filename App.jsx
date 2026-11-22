@@ -847,7 +847,7 @@ useEffect(() => {
         valuesResult, variantsResult, variantValuesResult, mediaResult, productCategoriesResult
       ] = await Promise.all([
         supabase.from('products').select('*').order('created_at', { ascending: false }),
-        supabase.from('categories').select('*').order('name_en', { ascending: true }),
+        supabase.from('categories').select('*').order('sort_order', { ascending: true }).order('id', { ascending: true }),
         supabase.from('category_subcategories').select('*').order('display_order', { ascending: true }),
         supabase.from('product_options').select('*').order('display_order', { ascending: true }),
         supabase.from('product_option_values').select('*').order('display_order', { ascending: true }),
