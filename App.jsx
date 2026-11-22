@@ -2982,6 +2982,109 @@ const deleteReview = async (id) => {
             <div className="benefit-item"><Headphones size={25} /><div><strong>{t.support}</strong><small>Contact us anytime</small></div></div>
           </section>
         )}
+          <section className="reviews-section" style={{ padding: '55px 0', textAlign: 'center' }}>
+          <div className="section-heading">
+            <div>
+              <span className="eyebrow">CUSTOMER LOVE</span>
+              <h2>{lang === 'ar' ? 'آراء عملائنا' : 'What Our Customers Say'}</h2>
+            </div>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: 18,
+            marginBottom: 35
+          }}>
+            {reviews.filter(review => !review.product_id).slice(0, 6).map(review => (
+              <div key={review.id} style={{
+                background: 'var(--paper, #FFFCF7)',
+                border: '1px solid var(--line, #E9DFD2)',
+                borderRadius: 16,
+                padding: 22,
+                textAlign: 'start'
+              }}>
+                <div style={{ color: '#B69A7D', fontSize: 20, marginBottom: 10 }}>
+                  {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
+                </div>
+                <p>{review.comment}</p>
+                <strong>{review.customer_name}</strong>
+              </div>
+            ))}
+          </div>
+
+          <div style={{
+            maxWidth: 550,
+            margin: '0 auto',
+            padding: 24,
+            border: '1px solid var(--line, #E9DFD2)',
+            borderRadius: 18,
+            background: 'var(--paper, #FFFCF7)',
+            textAlign: 'start'
+          }}>
+            <h3>{lang === 'ar' ? 'شاركنا رأيك' : 'Share Your Experience'}</h3>
+
+            <form onSubmit={event => {
+              event.preventDefault()
+              submitReview(null)
+            }}>
+              <label>{lang === 'ar' ? 'الاسم' : 'Your Name'}</label>
+              <input
+                value={reviewName}
+                onChange={event => setReviewName(event.target.value)}
+                required
+                maxLength={80}
+                placeholder={lang === 'ar' ? 'اكتب اسمك' : 'Enter your name'}
+              />
+
+              <label>{lang === 'ar' ? 'التقييم' : 'Your Rating'}</label>
+              <div style={{ display: 'flex', gap: 8, margin: '10px 0 18px' }}>
+                {[1, 2, 3, 4, 5].map(star => (
+                  <button
+                    key={star}
+                    type="button"
+                    onClick={() => setReviewRating(star)}
+                    style={{
+                      border: 'none',
+                      background: 'transparent',
+                      color: star <= reviewRating ? '#B69A7D' : '#ccc',
+                      fontSize: 28,
+                      cursor: 'pointer'
+                    }}
+                  >
+                    ★
+                  </button>
+                ))}
+              </div>
+
+              <label>{lang === 'ar' ? 'تعليقك' : 'Your Review'}</label>
+              <textarea
+                value={reviewComment}
+                onChange={event => setReviewComment(event.target.value)}
+                required
+                maxLength={1500}
+                rows={4}
+                placeholder={lang === 'ar' ? 'اكتب رأيك هنا...' : 'Write your experience...'}
+              />
+
+              <button
+                type="submit"
+                className="primary-button full-button"
+                disabled={reviewSubmitting}
+              >
+                {reviewSubmitting
+                  ? (lang === 'ar' ? 'جاري الإرسال...' : 'Submitting...')
+                  : (lang === 'ar' ? 'إرسال التقييم' : 'Submit Review')}
+              </button>
+
+              <small style={{ display: 'block', marginTop: 12 }}>
+                {lang === 'ar'
+                  ? 'سيظهر تقييمك بعد المراجعة والموافقة عليه.'
+                  : 'Your review will appear after approval.'}
+              </small>
+            </form>
+          </div>
+        </section>  
 </>
   )}
         
