@@ -2887,7 +2887,7 @@ async function moveCategory(category, index, direction) {
   <div className="filter-row">
             <button type="button" className={activeCategory === 'all' ? 'filter-chip active' : 'filter-chip'}
               onClick={() => setActiveCategory('all')}>{t.categoryAll}</button>
-            {categories.map(category => (
+          {categories.map((category, index) => (
               <button type="button" key={category.id}
                 className={activeCategory === category.id ? 'filter-chip active' : 'filter-chip'}
                 onClick={() => setActiveCategory(category.id)}>
