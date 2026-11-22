@@ -3645,6 +3645,18 @@ const deleteReview = async (id) => {
                     <button type="button" className={adminTab === 'products' ? 'active' : ''} onClick={() => setAdminTab('products')}><Package size={16} /> {t.products}</button>
                     <button type="button" className={adminTab === 'categories' ? 'active' : ''} onClick={() => { setAdminTab('categories'); loadStore() }}><Tags size={16} /> {t.manageCategories}</button>
                     <button type="button" className={adminTab === 'orders' ? 'active' : ''} onClick={() => { setAdminTab('orders'); loadOrders() }}><ClipboardList size={16} /> {t.orders}</button>
+                                        {session?.user?.email?.toLowerCase() === 'mortezamozafri672@gmail.com' && (
+                      <button
+                        type="button"
+                        className={adminTab === 'reviews' ? 'active' : ''}
+                        onClick={() => {
+                          setAdminTab('reviews')
+                          loadReviews()
+                        }}
+                      >
+                        <Star size={16} /> {lang === 'ar' ? 'التقييمات' : 'Reviews'}
+                      </button>
+                    )}
                   </div>
                   <button type="button" className="logout-button" onClick={handleLogout}><LogOut size={16} /> {t.logout}</button>
                 </div>
