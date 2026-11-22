@@ -3943,6 +3943,119 @@ const deleteReview = async (id) => {
                     </div>
                   </div>
                 )}
+                                {adminTab === 'reviews' && (
+                  <div className="admin-section">
+                    <div className="section-heading">
+                      <div>
+                        <span className="eyebrow">CUSTOMER FEEDBACK</span>
+                        <h2>{lang === 'ar' ? 'إدارة التقييمات' : 'Manage Reviews'}</h2>
+                      </div>
+                      <button
+                        type="button"
+                        className="secondary-button"
+                        onClick={loadReviews}
+                      >
+                        {lang === 'ar' ? 'تحديث' : 'Refresh'}
+                      </button>
+                    </div>
+
+                    {reviewsLoading ? (
+                      <p>{lang === 'ar' ? 'جاري تحميل التقييمات...' : 'Loading reviews...'}</p>
+                    ) : reviewsError ? (
+                      <p className="error-message">{reviewsError}</p>
+                    ) : reviews.length === 0 ? (
+                      <div className="empty-state">
+                        <p>{lang === 'ar' ? 'لا توجد تقييمات حتى الآن' : 'No reviews yet'}</p>
+                      </div>
+                    ) : (
+                      <div style={{ display: 'grid', gap: 16 }}>
+                        {reviews.map(review => (
+                          <article
+                            key={review.id}
+                            style={{
+                              padding: 18,
+                              border: '1px solid var(--line, #E9DFD2)',
+                              borderRadius: 14,
+                              background: 'var(--paper, #FFFCF7)'
+                            }}
+                          >
+                            <div style={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                              flexWrap: 'wrap',
+                              gap: 10
+                            }}>
+                              <strong>{review.customer_name}</strong>
+                              <span style={{
+                                color: review.status === 'approved'
+                                  ? '#39845B'
+                                  : review.status === 'rejected'
+                                    ? '#B94A48'
+                                    : '#B58A35'
+                              }}>
+                                {review.status === 'approved'
+                                  ? (lang === 'ar' ? 'مقبول' : 'Approved')
+                                  : review.status === 'rejected'
+                                    ? (lang === 'ar' ? 'مرفوض' : 'Rejected')
+                                    : (lang === 'ar' ? 'بانتظار الموافقة' : 'Pending')}
+                              </span>
+                            </div>
+
+                            <div style={{
+                              color: '#B69A7D',
+                              fontSize: 20,
+                              margin: '8px 0'
+                            }}>
+                              {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
+                            </div>
+
+                            <p>{review.comment}</p>
+
+                            <small style={{ color: 'var(--muted, #8C8176)' }}>
+                              {review.product_id
+                                ? `${lang === 'ar' ? 'تقييم منتج رقم' : 'Product ID'}: ${review.product_id}`
+                                : (lang === 'ar' ? 'تقييم عام للمتجر' : 'Store review')}
+                            </small>
+
+                            <div style={{
+                              display: 'flex',
+                              flexWrap: 'wrap',
+                              gap: 8,
+                              marginTop: 14
+                            }}>
+                              <button
+                                type="button"
+                                className="primary-button"
+                                onClick={() => updateReviewStatus(review.id, 'approved')}
+                                disabled={review.status === 'approved'}
+                              >
+                                {lang === 'ar' ? 'موافقة' : 'Approve'}
+                              </button>
+
+                              <button
+                                type="button"
+                                className="secondary-button"
+                                onClick={() => updateReviewStatus(review.id, 'rejected')}
+                                disabled={review.status === 'rejected'}
+                              >
+                                {lang === 'ar' ? 'رفض' : 'Reject'}
+                              </button>
+
+                              <button
+                                type="button"
+                                className="secondary-button"
+                                onClick={() => deleteReview(review.id)}
+                              >
+                                {lang === 'ar' ? 'حذف' : 'Delete'}
+                              </button>
+                            </div>
+                          </article>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
                 {adminTab === 'categories' && (
                   <div className="admin-categories">
                     <h3>{t.manageCategories}</h3>
