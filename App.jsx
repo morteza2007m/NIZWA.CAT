@@ -653,7 +653,10 @@ useEffect(() => {
 }, [])
   const t = translations[lang]
   const rtl = lang === 'ar'
-
+useEffect(() => {
+  if (!supabase) return
+  loadReviews()
+}, [])
   const selectedCategoryPage = categories.find(category =>
     String(category.id) === String(categoryPageId) || categorySlug(category) === String(categoryPageId)
   ) || null
