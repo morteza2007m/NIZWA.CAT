@@ -3740,7 +3740,31 @@ async function moveCategory(category, index, direction) {
                           ) : (
                             <>
                               <div className="admin-list-info" style={{ flex: '1 1 150px', minWidth: 0 }}><strong>{categoryTitle(category, lang)}</strong><small>{category.name_en || ''}</small></div>
-                              <IconButton label={t.editCategory} onClick={() => startEditCategory(category)}><Edit3 size={17} /></IconButton>
+                            
+{index >= 2 && (
+  <>
+    {index > 2 && (
+      <IconButton
+        label={lang === 'ar' ? 'تحريك للأعلى' : 'Move up'}
+        onClick={() => moveCategory(category, index, -1)}
+      >
+        ↑
+      </IconButton>
+    )}
+
+    {index < categories.length - 1 && (
+      <IconButton
+        label={lang === 'ar' ? 'تحريك للأسفل' : 'Move down'}
+        onClick={() => moveCategory(category, index, 1)}
+      >
+        ↓
+      </IconButton>
+    )}
+  </>
+)}
+<IconButton label={t.editCategory} onClick={() => startEditCategory(category)}><Edit3 size={17} /></IconButton>
+<IconButton label={t.delete} onClick={() => deleteCategory(category)}><Trash2 size={17} /></IconButton>
+
                               <IconButton label={t.delete} onClick={() => deleteCategory(category)}><Trash2 size={17} /></IconButton>
                             </>
                           )}
