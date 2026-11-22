@@ -2128,6 +2128,43 @@ async function addCategory(event) {
     }
   }
 
+async function moveCategory(category, index, direction) {
+  if (!supabase || !session || index < 2) return
+
+  const targetIndex = index + direction
+
+  if (targetIndex < 2 || targetIndex >= categories.length) return
+
+  const otherCategory = categories[targetIndex]
+
+  setSaving(true)
+
+  try {
+    const currentOrder = Number(category.sort_order ?? index)
+    const otherOrder = Number(otherCategory.sort_order ?? targetIndex)
+
+    const results = await Promise.all([
+      supabase.from('categories')
+        .update({ sort_order: otherOrder })
+        .eq('id', category.id),
+
+      supabase.from('categories')
+        .update({ sort_order: currentOrder })
+        .eq('id', otherCategory.id)
+    ])
+
+    const failed = results.find(result => result.error)
+    if (failed) throw failed.error
+
+    await loadStore()
+    setNotice(t.saved)
+  } catch (error) {
+    setNotice(error?.message || 'Could not reorder categories')
+  } finally {
+    setSaving(false)
+  }
+}
+
   async function deleteCategory(category) {
     if (!supabase || !session) return
     const inUse = products.some(product =>
