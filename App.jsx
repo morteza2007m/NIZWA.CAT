@@ -5,7 +5,7 @@ import {
   LogIn, LogOut, Package, Tags, ImagePlus, Trash2,
   Edit3, Check, AlertCircle, Truck, ShieldCheck,
   Headphones, Sparkles, Heart, ShoppingBasket, UserRound,
-  Loader2, RefreshCw, ClipboardList, Cat
+    Loader2, RefreshCw, ClipboardList, Cat, Star
 } from 'lucide-react'
 import { isSupabaseConfigured, supabase } from './supabase.js'
 
