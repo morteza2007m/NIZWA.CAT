@@ -1929,35 +1929,41 @@ async function loadOrders() {
     setNotice(t.deleted)
   }
 
-  async function addCategory(event) {
-    event.preventDefault()
-    if (!supabase || !session) return
-    if (!categoryForm.name_en.trim() && !categoryForm.name_ar.trim()) {
-      setNotice(t.required)
-      return
-    }
-    setSaving(true)
-    const { error } = await supabase.from('categories').insert({
-      name_en: categoryForm.name_en.trim(),
-      name_ar: categoryForm.name_ar.trim()
-    })
-    setSaving(false)
-    if (error) {
-      setNotice(error.message)
-      return
-    }
-    setCategoryForm({ name_en: '', name_ar: '' })
-    await loadStore()
-    setNotice(t.saved)
+  
+async function addCategory(event) {
+  event.preventDefault()
+  if (!supabase || !session) return
+
+  if (!categoryForm.name_en.trim() && !categoryForm.name_ar.trim()) {
+    setNotice(t.required)
+    return
   }
 
-  async function addSubcategory(event) {
-    event.preventDefault()
-    if (!supabase || !session) return
-    if (!subcategoryForm.category_id || (!subcategoryForm.name_en.trim() && !subcategoryForm.name_ar.trim())) {
-      setNotice(t.required)
-      return
-    }
+  setSaving(true)
+
+  const nextSortOrder = categories.reduce(
+    (max, category) => Math.max(max, Number(category.sort_order ?? -1)),
+    -1
+  ) + 1
+
+  const { error } = await supabase.from('categories').insert({
+    name_en: categoryForm.name_en.trim(),
+    name_ar: categoryForm.name_ar.trim(),
+    sort_order: nextSortOrder
+  })
+
+  setSaving(false)
+
+  if (error) {
+    setNotice(error.message)
+    return
+  }
+
+  setCategoryForm({ name_en: '', name_ar: '' })
+  await loadStore()
+  setNotice(t.saved)
+}
+
     setSaving(true)
     try {
       const { error } = await supabase.from('category_subcategories').insert({
