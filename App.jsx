@@ -3306,6 +3306,109 @@ const deleteReview = async (id) => {
                   )}
                 </>
               )}
+                            <section style={{
+                marginTop: 35,
+                paddingTop: 25,
+                borderTop: '1px solid var(--line, #E9DFD2)'
+              }}>
+                <h3>{lang === 'ar' ? 'تقييمات هذا المنتج' : 'Customer Reviews'}</h3>
+
+                {reviewsLoading ? (
+                  <p>{lang === 'ar' ? 'جاري تحميل التقييمات...' : 'Loading reviews...'}</p>
+                ) : (
+                  <>
+                    {reviews.filter(review =>
+                      String(review.product_id) === String(selectedProduct.id)
+                    ).length === 0 ? (
+                      <p style={{ color: 'var(--muted, #8C8176)' }}>
+                        {lang === 'ar' ? 'ما فيه تقييمات لهذا المنتج بعد.' : 'No reviews for this product yet.'}
+                      </p>
+                    ) : (
+                      <div style={{ display: 'grid', gap: 12, margin: '18px 0' }}>
+                        {reviews.filter(review =>
+                          String(review.product_id) === String(selectedProduct.id)
+                        ).map(review => (
+                          <div key={review.id} style={{
+                            padding: 16,
+                            border: '1px solid var(--line, #E9DFD2)',
+                            borderRadius: 14,
+                            background: 'var(--paper, #FFFCF7)'
+                          }}>
+                            <div style={{ color: '#B69A7D', fontSize: 19 }}>
+                              {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
+                            </div>
+                            <p>{review.comment}</p>
+                            <strong>{review.customer_name}</strong>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                )}
+
+                <form onSubmit={event => {
+                  event.preventDefault()
+                  submitReview(selectedProduct.id)
+                }} style={{ display: 'grid', gap: 12, marginTop: 20 }}>
+
+                  <h4>{lang === 'ar' ? 'شاركنا رأيك في المنتج' : 'Write a Review'}</h4>
+
+                  <label>{lang === 'ar' ? 'الاسم' : 'Your Name'}</label>
+                  <input
+                    value={reviewName}
+                    onChange={event => setReviewName(event.target.value)}
+                    required
+                    maxLength={80}
+                    placeholder={lang === 'ar' ? 'اكتب اسمك' : 'Enter your name'}
+                  />
+
+                  <label>{lang === 'ar' ? 'التقييم' : 'Your Rating'}</label>
+                  <div style={{ display: 'flex', gap: 8 }}>
+                    {[1, 2, 3, 4, 5].map(star => (
+                      <button
+                        key={star}
+                        type="button"
+                        onClick={() => setReviewRating(star)}
+                        style={{
+                          border: 'none',
+                          background: 'transparent',
+                          color: star <= reviewRating ? '#B69A7D' : '#ccc',
+                          fontSize: 28,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        ★
+                      </button>
+                    ))}
+                  </div>
+
+                  <label>{lang === 'ar' ? 'تعليقك' : 'Your Review'}</label>
+                  <textarea
+                    value={reviewComment}
+                    onChange={event => setReviewComment(event.target.value)}
+                    required
+                    maxLength={1500}
+                    rows={4}
+                    placeholder={lang === 'ar' ? 'اكتب رأيك هنا...' : 'Write your review...'}
+                  />
+
+                  <button
+                    type="submit"
+                    className="primary-button full-button"
+                    disabled={reviewSubmitting}
+                  >
+                    {reviewSubmitting
+                      ? (lang === 'ar' ? 'جاري الإرسال...' : 'Submitting...')
+                      : (lang === 'ar' ? 'إرسال التقييم' : 'Submit Review')}
+                  </button>
+
+                  <small>
+                    {lang === 'ar'
+                      ? 'سيظهر تقييمك بعد المراجعة والموافقة عليه.'
+                      : 'Your review will appear after approval.'}
+                  </small>
+                </form>
+              </section>
             </div>
           </div>
         </div>
