@@ -337,7 +337,12 @@ function productDescription(product, lang) {
     ? (product.description_ar || product.description_en || '')
     : (product.description_en || product.description_ar || '')
 }
-
+function formatProductDescription(description) {
+  return String(description || '')
+    .replace(/\s*✅\s*/g, '\n✅ ')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
+}
 function productDisplayPrice(product) {
   return product?.sale_price != null && Number(product.sale_price) > 0
     ? product.sale_price
