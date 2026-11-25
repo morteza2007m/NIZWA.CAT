@@ -3608,7 +3608,18 @@ async function loadAnalytics() {
   letter-spacing: 0 !important;
   margin: 0 0 14px !important;
 }
-      .product-modal-content > p:not(.variant-unavailable) {
+   .product-modal-content .product-description {
+  font-family: 'IBM Plex Sans Arabic', 'DM Sans', sans-serif !important;
+  color: #75685D !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  line-height: 2.2 !important;
+  letter-spacing: 0 !important;
+  text-align: start !important;
+  white-space: pre-line !important;
+  overflow-wrap: anywhere !important;
+  margin: 15px 0 24px !important;
+} {
   font-family: 'IBM Plex Sans Arabic', 'DM Sans', sans-serif !important;
   color: #75685D !important;
   font-size: 15px !important;
