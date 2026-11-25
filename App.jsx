@@ -3275,7 +3275,20 @@ async function loadAnalytics() {
                   return (
                     <button type="button" key={item.id}
                       className={`category-card${isSelected ? ' active' : ''}`}
-                      onClick={() => { setActiveSubcategory(String(item.id)); setSearch('') }}
+                      onClick={() => {
+  setActiveSubcategory(String(item.id))
+  setSearch('')
+
+  // Wait for filtered products to render, then scroll smoothly.
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      document.getElementById('category-products')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    })
+  })
+}}
                       aria-pressed={isSelected}
                       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, minHeight: 150, padding: 18, textAlign: 'center', border: isSelected ? '2px solid var(--accent, #8b6f9f)' : undefined }}>
                       <span className={`category-icon category-icon-${index % 5}`} style={{ width: 66, height: 66, display: 'grid', placeItems: 'center', overflow: 'hidden' }}>
