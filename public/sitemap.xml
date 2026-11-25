@@ -1,7 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://nizwacat.com/</loc>
-    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <url>
+    <loc>https://nizwacat.com/category/litter-supplies</loc>
+  </url>
+
+  <url>
+    <loc>https://nizwacat.com/category/cat-toys-and-scratchers</loc>
+  </url>
+
+  <url>
+    <loc>https://nizwacat.com/category/grooming-care</loc>
+  </url>
+
+  <url>
+    <loc>https://nizwacat.com/category/bowls-mats</loc>
+  </url>
+
+  <url>
+    <loc>https://nizwacat.com/category/adult-cats</loc>
+  </url>
+
+  <url>
+    <loc>https://nizwacat.com/category/kitten</loc>
+  </url>
+
 </urlset>
