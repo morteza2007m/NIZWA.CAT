@@ -3323,7 +3323,14 @@ async function loadAnalytics() {
                 </div>
               )}
               {!loading && filteredProducts.length === 0 && (
-                <div className="empty-state"><Package size={38} /><p>{search ? t.noResults : t.noProducts}</p></div>
+              <div
+  className="empty-state"
+  id="category-products"
+  style={{ scrollMarginTop: '24px' }}
+>
+  <Package size={38} />
+  <p>{search ? t.noResults : t.noProducts}</p>
+</div>
               )}
             </>
           )}
