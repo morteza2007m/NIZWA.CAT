@@ -3394,7 +3394,10 @@ async function loadAnalytics() {
               )}
             </div>
             <div className="product-modal-content">
-              <h2>{productTitle(selectedProduct, lang)}</h2><p>{productDescription(selectedProduct, lang)}</p>
+           <h2>{productTitle(selectedProduct, lang)}</h2>
+<p className="product-description">
+  {formatProductDescription(productDescription(selectedProduct, lang))}
+</p>
               {selectedProductOptions.map(option => {
                 const values = optionValues.filter(value => String(value.option_id) === String(option.id))
                 return (
