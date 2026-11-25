@@ -3598,7 +3598,18 @@ async function loadAnalytics() {
           letter-spacing: -.02em !important;
           margin: 0 0 9px !important;
         }
-        .product-modal-content > p:not(.variant-unavailable) {
+      .product-modal-content > p:not(.variant-unavailable) {
+  font-family: 'IBM Plex Sans Arabic', 'DM Sans', sans-serif !important;
+  color: #75685D !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  line-height: 2.15 !important;
+  letter-spacing: 0 !important;
+  text-align: start !important;
+  white-space: pre-line !important;
+  overflow-wrap: anywhere !important;
+  margin: 15px 0 20px !important;
+}
           color: #817467 !important;
           font-size: 13px !important;
           line-height: 1.85 !important;
