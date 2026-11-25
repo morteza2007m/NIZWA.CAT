@@ -3591,13 +3591,15 @@ async function loadAnalytics() {
           padding: 25px 27px 28px !important;
           background: #FFFCF7 !important;
         }
-        .product-modal-content h2 {
-          color: #493A30 !important;
-          font-size: clamp(20px, 2.4vw, 27px) !important;
-          line-height: 1.35 !important;
-          letter-spacing: -.02em !important;
-          margin: 0 0 9px !important;
-        }
+    .product-modal-content h2 {
+  font-family: 'IBM Plex Sans Arabic', 'DM Sans', sans-serif !important;
+  color: #493A30 !important;
+  font-size: clamp(21px, 2.4vw, 28px) !important;
+  font-weight: 750 !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0 !important;
+  margin: 0 0 14px !important;
+}
       .product-modal-content > p:not(.variant-unavailable) {
   font-family: 'IBM Plex Sans Arabic', 'DM Sans', sans-serif !important;
   color: #75685D !important;
