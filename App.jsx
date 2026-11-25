@@ -3309,7 +3309,11 @@ async function loadAnalytics() {
           {!(selectedCategoryPage && subcategories.some(item => String(item.category_id) === String(selectedCategoryPage.id)) && activeSubcategory === 'choose') && (
             <>
               {!loading && filteredProducts.length > 0 && (
-                <div className="product-grid">
+                <div
+  className="product-grid"
+  id="category-products"
+  style={{ scrollMarginTop: '24px' }}
+>
                   {filteredProducts.map((product, index) => (
                     <ProductCard key={product.id} product={product} lang={lang} t={t} imagePriority={index < 6}
                       hasVariants={productOptions.some(option => String(option.product_id) === String(product.id))}
